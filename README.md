@@ -2,6 +2,22 @@
 
 **Find what's broken before you ship it.**
 
+![Axiom report: 30 findings across 6 pages, with a one-click fix prompt for Claude Code](docs/report.png)
+
+> A real run against the bundled demo site (`npm run fixture`) — 6 pages opened in a
+> real browser, 45 keyboard stops walked, 12 links checked, in 35 seconds.
+
+**[Live demo](https://hack1-lemon.vercel.app)** · the code audit runs fully in the
+browser demo. The live-site audit drives a real Chromium browser, so it needs a
+container — run it locally for the full experience:
+
+```bash
+git clone https://github.com/thesurajgupta/axiom && cd axiom
+npm install && npx playwright install chromium
+npm run fixture   # in one terminal — the deliberately broken demo site
+npm run dev       # in another
+```
+
 Axiom is two audits in one.
 
 **Point it at a URL** and it crawls your whole site, opens every page in a real

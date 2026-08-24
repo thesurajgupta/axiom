@@ -12,7 +12,8 @@
     "scan": "tsx scripts/scan.ts",
     "fixture": "node fixtures/broken-app/server.mjs",
     "audit": "tsx scripts/audit-code.ts",
-    "audit:demo": "tsx scripts/audit-code.ts fixtures/vulnerable-project"
+    "audit:demo": "tsx scripts/audit-code.ts fixtures/vulnerable-project",
+    "shot": "tsx scripts/shot.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.120.0",

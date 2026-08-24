@@ -1,0 +1,17 @@
+{
+  "services": {
+    "axiom": {
+      "root": ".",
+      "framework": "nextjs"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "axiom"
+      }
+    }
+  ]
+}
