@@ -1,9 +1,9 @@
 import {
-  chromium,
   type Browser,
   type BrowserContext,
   type Response,
 } from "playwright-core";
+import { launchBrowser } from "./browser";
 import { crawl, type DiscoveredLink } from "./crawl";
 import { keyboardFindings, staticA11yFindings } from "./checks/a11y";
 import {
@@ -103,9 +103,7 @@ export async function scan({
   };
 
   try {
-    browser = await chromium.launch({
-      args: ["--no-sandbox", "--disable-dev-shm-usage"],
-    });
+    browser = await launchBrowser();
 
     // Bundlers rewrite named function expressions to call a `__name` helper for
     // stack-trace fidelity. That helper lives in our module scope, not in the

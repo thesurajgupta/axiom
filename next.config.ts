@@ -50,10 +50,13 @@ const nextConfig: NextConfig = {
    * something the browser will not execute, which surfaces as `window.axe`
    * being undefined at injection time.
    */
-  serverExternalPackages: ["playwright-core", "axe-core"],
+  serverExternalPackages: ["playwright-core", "axe-core", "@sparticuz/chromium"],
 
-  /** Emits a self-contained server bundle for the Docker runtime stage. */
-  output: "standalone",
+  /**
+   * Standalone output is for the Docker/Render runtime. Vercel builds its own
+   * function bundles, so we skip it there to avoid a redundant/duplicate trace.
+   */
+  ...(process.env.VERCEL ? {} : { output: "standalone" as const }),
 
   /**
    * Next traces JS imports, but playwright-core also reads non-JS assets at

@@ -64,6 +64,16 @@ export async function GET(request: Request) {
   const check = validateTarget(target);
   const encoder = new TextEncoder();
 
+  // Serverless functions (Vercel) run a Lambda-style Chromium with tight memory
+  // and a hard duration cap, so a multi-minute deep crawl of dozens of pages is
+  // not viable there. Bound it hard: fewer pages and a budget that fits inside
+  // the function timeout. A full-container host (Render) has neither limit and
+  // runs the unbounded crawl. This keeps the hosted demo reliable rather than
+  // letting it time out mid-scan.
+  const onServerless = Boolean(process.env.VERCEL);
+  const effectiveMaxPages = onServerless ? Math.min(maxPages, 8) : maxPages;
+  const timeBudgetMs = onServerless ? 240_000 : 30 * 60_000;
+
   const stream = new ReadableStream({
     async start(controller) {
       const send = (event: ScanEvent) => {
@@ -84,7 +94,8 @@ export async function GET(request: Request) {
         await scan({
           url: check.url.toString(),
           depth,
-          maxPages,
+          maxPages: effectiveMaxPages,
+          timeBudgetMs,
           onEvent: send,
         });
       } catch (error) {

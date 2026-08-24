@@ -37,6 +37,27 @@ export default function Home() {
           findings, and the prompt that fixes them.
         </p>
 
+        {process.env.VERCEL && (
+          <aside className="mt-10 rounded-lg border border-rule bg-card px-5 py-4 text-[15px] leading-relaxed text-ink-soft">
+            <p>
+              <span className="text-ink">Note on this hosted demo.</span>{" "}
+              The <span className="text-ink">code audit</span> runs fully here.
+              The <span className="text-ink">live-site audit</span> drives a real
+              Chromium browser, which serverless hosting can only run for a single
+              shallow page — so deep crawls may time out.
+            </p>
+            <p className="mt-2">
+              For the full experience, run it locally — your code never leaves your
+              machine:
+            </p>
+            <p className="mt-2 overflow-x-auto">
+              <code className="font-mono text-sm text-ink">
+                git clone https://github.com/thesurajgupta/axiom &amp;&amp; cd axiom &amp;&amp; npm i &amp;&amp; npx playwright install chromium &amp;&amp; npm run dev
+              </code>
+            </p>
+          </aside>
+        )}
+
         <div className="mt-12">
           <AuditTabs examples={EXAMPLES} />
         </div>
