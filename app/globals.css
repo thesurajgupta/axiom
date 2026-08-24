@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
+/**
+ * Axiom is an inspection report, so it is designed as a document rather than as
+ * a dashboard: light by default, ink on paper, with colour reserved almost
+ * entirely for severity. The severity ramp *is* the palette — red through slate
+ * — because the only thing the reader needs to see from across the room is how
+ * bad it is.
+ *
+ * Every pair below is asserted against WCAG AA in scripts/verify-palette.ts,
+ * using the same contrast solver that powers the product.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --paper: #f2f4f7;
+  --card: #ffffff;
+  --rule: #d9dfe7;
+  --rule-strong: #b0bac7;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --ink: #10151d;
+  --ink-soft: #444f5f;
+  --ink-faint: #5e6a7a;
+
+  /* Severity ramp. Four steps, ordered by consequence. */
+  --blocking: #b3231b;
+  --blocking-wash: #fdeceb;
+  --serious: #9a4a06;
+  --serious-wash: #fdf0e3;
+  --moderate: #75600a;
+  --moderate-wash: #fbf4dc;
+  --minor: #4f5866;
+  --minor-wash: #eceff3;
+
+  --action: #1b4ed8;
+  --action-ink: #ffffff;
+  --clear: #0d6b46;
+  --clear-wash: #e0f5ec;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #0d1117;
+    --card: #151b24;
+    --rule: #262e3a;
+    --rule-strong: #3b4655;
+
+    --ink: #e9edf3;
+    --ink-soft: #a3aebd;
+    --ink-faint: #8a95a5;
+
+    --blocking: #ff7b6e;
+    --blocking-wash: #3a1a17;
+    --serious: #f0a259;
+    --serious-wash: #35240f;
+    --moderate: #d9c25f;
+    --moderate-wash: #2e2810;
+    --minor: #9aa5b4;
+    --minor-wash: #1e242e;
+
+    --action: #7fa8ff;
+    --action-ink: #0d1117;
+    --clear: #5fd39d;
+    --clear-wash: #102b20;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-blocking: var(--blocking);
+  --color-blocking-wash: var(--blocking-wash);
+  --color-serious: var(--serious);
+  --color-serious-wash: var(--serious-wash);
+  --color-moderate: var(--moderate);
+  --color-moderate-wash: var(--moderate-wash);
+  --color-minor: var(--minor);
+  --color-minor-wash: var(--minor-wash);
+  --color-action: var(--action);
+  --color-action-ink: var(--action-ink);
+  --color-clear: var(--clear);
+  --color-clear-wash: var(--clear-wash);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Display face is used sparingly: page title, section headers, finding titles. */
+.display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Small uppercase labels that mark structure. Tracked out so they read as
+   signage rather than shouting. */
+.tag {
+  font-family: var(--font-mono), monospace;
+  /* 12px floor: our own mobile check flags anything smaller as unreadable,
+     and it caught this class at 11px when we audited ourselves. */
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.breathe {
+  animation: breathe 1.8s ease-in-out infinite;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
 }

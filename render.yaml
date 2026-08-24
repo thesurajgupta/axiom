@@ -1,0 +1,15 @@
+# Render blueprint. Connect the repo at https://dashboard.render.com/blueprints
+# and Render will provision this service automatically.
+services:
+  - type: web
+    name: axiom
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter          # Chromium needs more memory than the free tier allows
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"

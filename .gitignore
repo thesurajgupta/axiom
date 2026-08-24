@@ -33,6 +33,12 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Deliberately-vulnerable demo fixtures. They contain fake-but-format-valid
+# credentials so the scanner can be tested against them, which is exactly the
+# kind of thing that should never live in a public repo. Kept local only;
+# `npm run fixture` and `npm run audit:demo` still work on your machine.
+fixtures/
+
 # vercel
 .vercel
 

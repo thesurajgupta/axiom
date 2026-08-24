@@ -1,0 +1,8 @@
+node_modules
+.next
+.git
+.claude
+fixtures
+scripts/diag.mts
+npm-debug.log
+README.md

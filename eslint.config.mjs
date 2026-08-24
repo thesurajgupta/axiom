@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Intentionally insecure test fixtures — never linted.
+    "fixtures/**",
   ]),
 ]);
 
