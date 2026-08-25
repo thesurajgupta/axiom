@@ -59,13 +59,22 @@ const nextConfig: NextConfig = {
   ...(process.env.VERCEL ? {} : { output: "standalone" as const }),
 
   /**
-   * Next traces JS imports, but playwright-core also reads non-JS assets at
-   * runtime (browsers.json, which maps browser versions to download paths).
-   * Without this the standalone server builds fine and then fails on first
-   * launch with "Cannot find module browsers.json" — force the whole package in.
+   * Next traces JS imports, but both browser packages also read non-JS assets at
+   * runtime, so tracing alone leaves the function broken in a way that only
+   * appears on the first real request:
+   *
+   * - playwright-core reads browsers.json (browser version → download path).
+   *   Without it: "Cannot find module browsers.json" at launch.
+   * - @sparticuz/chromium ships the actual Chromium binary as brotli archives in
+   *   bin/. Without them: "The input directory .../bin does not exist".
+   *
+   * Together they are ~80MB, well inside the serverless function size limit.
    */
   outputFileTracingIncludes: {
-    "/api/scan": ["./node_modules/playwright-core/**/*"],
+    "/api/scan": [
+      "./node_modules/playwright-core/**/*",
+      "./node_modules/@sparticuz/chromium/**/*",
+    ],
   },
 
   /** Don't advertise the framework and version to anyone scanning for CVEs. */

@@ -99,10 +99,25 @@ export async function GET(request: Request) {
           onEvent: send,
         });
       } catch (error) {
+        const raw =
+          error instanceof Error ? error.message : "The audit failed unexpectedly.";
+
+        // A browser that cannot start is an infrastructure problem, not something
+        // the visitor did wrong. Say so in their terms and point at the fix,
+        // rather than surfacing a bundler stack trace.
+        const browserFailed =
+          /chromium|browser|executablePath|does not exist|Failed to launch|ENOENT/i.test(
+            raw
+          );
+
         send({
           type: "error",
-          message:
-            error instanceof Error ? error.message : "The audit failed unexpectedly.",
+          message: browserFailed
+            ? "The live-site audit needs a real Chromium browser, which this " +
+              "hosted demo can't start. The code audit on the other tab works " +
+              "here — or run the whole thing locally (the README has a one-line " +
+              "clone command) to use this."
+            : raw,
         });
       } finally {
         controller.close();
