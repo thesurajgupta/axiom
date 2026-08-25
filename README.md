@@ -50,6 +50,14 @@ Both end the same way: plain-language findings, and the prompt that fixes them.
 
 ---
 
+## The site
+
+| | |
+| --- | --- |
+| [How it works](https://hack1-lemon.vercel.app/how-it-works) | The two-pass browser architecture, the keyboard walk, root-cause merging, and where it refuses to guess |
+| [Checks](https://hack1-lemon.vercel.app/checks) | All 139 checks, generated from the engine's own finding ids and asserted in CI |
+| [Proof](https://hack1-lemon.vercel.app/proof) | Measured runs against w3.org, Hacker News, a vulnerable codebase, and Axiom itself |
+
 ## The problem
 
 People ship software faster than they can check it.

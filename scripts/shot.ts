@@ -9,7 +9,6 @@ import { chromium } from "playwright-core";
 import { mkdir } from "node:fs/promises";
 
 const APP = process.env.APP_URL ?? "http://localhost:3000";
-const TARGET = process.env.TARGET_URL ?? "http://localhost:4321";
 
 async function main() {
   await mkdir("docs", { recursive: true });

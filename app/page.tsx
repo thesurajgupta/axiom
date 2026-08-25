@@ -1,4 +1,6 @@
 import { AuditTabs } from "@/components/audit-tabs";
+import { SiteFooter, SiteNav } from "@/components/site-nav";
+import { TOTAL_CHECK_COUNT } from "@/lib/catalog";
 
 const EXAMPLES = [
   ...(process.env.NODE_ENV === "development"
@@ -15,12 +17,7 @@ export default function Home() {
         Skip to main content
       </a>
 
-      <header className="border-b border-rule">
-        <div className="mx-auto flex max-w-3xl items-center gap-3 px-6 py-4">
-          <span className="display text-[15px] tracking-tight">Axiom</span>
-          <span className="tag ml-auto text-ink-faint">Pre-launch audit</span>
-        </div>
-      </header>
+      <SiteNav />
 
       <main id="main" className="mx-auto w-full max-w-3xl flex-1 px-6 py-14">
         <h1 className="display text-4xl leading-[1.1] text-ink sm:text-5xl">
@@ -105,6 +102,18 @@ export default function Home() {
           </dl>
         </section>
 
+        <p className="mt-8 text-[15px] text-ink-soft">
+          {TOTAL_CHECK_COUNT} checks run on every audit —{" "}
+          <a href="/checks" className="text-action underline underline-offset-2">
+            see the full catalog
+          </a>
+          , or read{" "}
+          <a href="/how-it-works" className="text-action underline underline-offset-2">
+            how it works
+          </a>
+          .
+        </p>
+
         <section aria-labelledby="limits" className="mt-14 border-t border-rule pt-10">
           <h2 id="limits" className="tag text-ink-faint">
             What it can&apos;t check
@@ -120,14 +129,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-rule">
-        <div className="mx-auto max-w-3xl px-6 py-6">
-          <p className="text-sm text-ink-faint">
-            Axiom audits a single page per run. It reports what it observed, and
-            says plainly when something needs a person instead.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
