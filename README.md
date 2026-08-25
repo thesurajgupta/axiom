@@ -7,9 +7,10 @@
 > A real run against the bundled demo site (`npm run fixture`) — 6 pages opened in a
 > real browser, 45 keyboard stops walked, 12 links checked, in 35 seconds.
 
-**[Live demo](https://hack1-lemon.vercel.app)** · the code audit runs fully in the
-browser demo. The live-site audit drives a real Chromium browser, so it needs a
-container — run it locally for the full experience:
+**[Live demo](https://hack1-lemon.vercel.app)** · both audits run there, including
+the live-site audit — it launches a real Chromium browser server-side. The hosted
+version is capped at 8 pages / 4 minutes to fit the platform's function timeout.
+Run it locally for uncapped crawls:
 
 ```bash
 git clone https://github.com/thesurajgupta/axiom && cd axiom

@@ -41,13 +41,14 @@ export default function Home() {
           <aside className="mt-10 rounded-lg border border-rule bg-card px-5 py-4 text-[15px] leading-relaxed text-ink-soft">
             <p>
               <span className="text-ink">Note on this hosted demo.</span>{" "}
-              The <span className="text-ink">code audit</span> runs fully here.
-              The <span className="text-ink">live-site audit</span> drives a real
-              Chromium browser, which serverless hosting can only run for a single
-              shallow page — so deep crawls may time out.
+              Both audits run here — the live-site audit really does drive a
+              Chromium browser on the server. To keep it inside the hosting
+              time limit it is capped at{" "}
+              <span className="text-ink">8 pages and 4 minutes</span>, so very
+              large sites stop early and report what they found.
             </p>
             <p className="mt-2">
-              For the full experience, run it locally — your code never leaves your
+              Run it locally for uncapped crawls — and your code never leaves your
               machine:
             </p>
             <p className="mt-2 overflow-x-auto">
