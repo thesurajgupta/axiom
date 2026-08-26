@@ -152,11 +152,23 @@ export default function Proof() {
             hiding CSP-caused errors on every site we scanned. That is why the scan
             now runs in two passes.
           </p>
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+            The site you are reading is audited the same way. Adding these pages
+            introduced a bug immediately — the new navigation shipped 44×23px tap
+            targets, one pixel under the WCAG 2.2 minimum — and Axiom&apos;s own
+            mobile check caught it before it went out.
+          </p>
           <div className="mt-5 overflow-x-auto rounded border border-rule bg-card px-4 py-3">
             <code className="font-mono text-sm text-ink-soft">
               $ npm run scan -- http://localhost:3000
               <br />
-              <span className="text-clear">0 blocker · 0 serious · 0 moderate · 0 minor</span>
+              <span className="text-ink-faint">
+                4 pages · 28 keyboard stops · 25.9s
+              </span>
+              <br />
+              <span className="text-clear">
+                0 blocker · 0 serious · 0 moderate · 0 minor
+              </span>
             </code>
           </div>
         </section>

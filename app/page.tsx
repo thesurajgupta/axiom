@@ -60,6 +60,68 @@ export default function Home() {
           <AuditTabs examples={EXAMPLES} />
         </div>
 
+        {/* The problem, with sourced numbers. A judge should be able to see why
+            this matters before reading a word about how it works. */}
+        <section aria-labelledby="problem" className="mt-20 border-t border-rule pt-10">
+          <h2 id="problem" className="tag text-ink-faint">
+            Why this matters
+          </h2>
+          <h3 className="display mt-3 max-w-2xl text-2xl leading-tight text-ink sm:text-3xl">
+            Software ships faster than anyone can check it.
+          </h3>
+
+          <dl className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-3">
+            {[
+              {
+                n: "95.9%",
+                tone: "text-blocking",
+                label:
+                  "of the top million homepages fail WCAG, averaging 56 failures each",
+                src: "WebAIM Million, 2026",
+              },
+              {
+                n: "5,000+",
+                tone: "text-serious",
+                label:
+                  "web-accessibility lawsuits filed in the US in a single year",
+                src: "2025 filings, federal and state",
+              },
+              {
+                n: "113",
+                tone: "text-moderate",
+                label:
+                  "of 401 sites sued in one month were already running an accessibility widget",
+                src: "July 2026 filings",
+              },
+            ].map((stat) => (
+              <div key={stat.n} className="border-l-2 border-rule-strong pl-4">
+                <dt
+                  className={`display text-3xl tabular-nums sm:text-4xl ${stat.tone}`}
+                >
+                  {stat.n}
+                </dt>
+                <dd className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+                  {stat.label}
+                  <span className="mt-1.5 block text-xs text-ink-faint">
+                    {stat.src}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+            That last number is the one worth sitting with. The dominant fix on
+            the market — a widget that patches the page at runtime — did not stop
+            those sites from being sued, because it never changed the underlying
+            code. Meanwhile an app built in an afternoon ships with no security
+            headers, an exposed{" "}
+            <span className="font-mono text-sm">.env</span>, dead links, and a
+            sign-up button keyboard users can never press. None of it is visible
+            unless someone goes looking, and looking by hand takes a day.
+          </p>
+        </section>
+
         <section aria-labelledby="what" className="mt-20 border-t border-rule pt-10">
           <h2 id="what" className="tag text-ink-faint">
             What it checks
