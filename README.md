@@ -7,7 +7,7 @@
 > A real run against the bundled demo site (`npm run fixture`) — 6 pages opened in a
 > real browser, 45 keyboard stops walked, 12 links checked, in 35 seconds.
 
-**[Live demo](https://hack1-lemon.vercel.app)** · both audits run there, including
+**[Live demo](https://axiom-beige-seven.vercel.app)** · both audits run there, including
 the live-site audit — it launches a real Chromium browser server-side. The hosted
 version is capped at 8 pages / 4 minutes to fit the platform's function timeout.
 Run it locally for uncapped crawls:
@@ -54,9 +54,9 @@ Both end the same way: plain-language findings, and the prompt that fixes them.
 
 | | |
 | --- | --- |
-| [How it works](https://hack1-lemon.vercel.app/how-it-works) | The two-pass browser architecture, the keyboard walk, root-cause merging, and where it refuses to guess |
-| [Checks](https://hack1-lemon.vercel.app/checks) | All 139 checks, generated from the engine's own finding ids and asserted in CI |
-| [Proof](https://hack1-lemon.vercel.app/proof) | Measured runs against w3.org, Hacker News, a vulnerable codebase, and Axiom itself |
+| [How it works](https://axiom-beige-seven.vercel.app/how-it-works) | The two-pass browser architecture, the keyboard walk, root-cause merging, and where it refuses to guess |
+| [Checks](https://axiom-beige-seven.vercel.app/checks) | All 139 checks, generated from the engine's own finding ids and asserted in CI |
+| [Proof](https://axiom-beige-seven.vercel.app/proof) | Measured runs against w3.org, Hacker News, a vulnerable codebase, and Axiom itself |
 
 ## The problem
 
